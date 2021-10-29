@@ -1,17 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Split,
   Button,
   Header,
   IconPlus,
   Main,
   SidePanel,
   SyncIndicator,
+  GU
 } from '@aragon/ui'
 import { useAragonApi } from '@aragon/api-react'
 import { ETHER_TOKEN_FAKE_ADDRESS } from './lib/token-utils'
 import { IdentityProvider } from './components/IdentityManager/IdentityManager'
-import Balances from './components/Balances'
+import NetFlows from './components/NetFlows'
+import LiveBalance from './components/LiveBalance'
 import NewTransferPanelContent from './components/NewTransfer/PanelContent'
 import Transfers from './components/Transfers'
 
@@ -85,6 +88,8 @@ class App extends React.Component {
       .toPromise()
   }
 
+  
+
   render() {
     const { appState, isSyncing } = this.props
     const { newTransferOpened } = this.state
@@ -107,7 +112,10 @@ class App extends React.Component {
             />
           }
         />
-        <Balances balances={balances} />
+        <Split 
+          primary={<NetFlows balances={balances} contentHeight={250} />}
+          secondary={<LiveBalance balances={balances} contentHeight={250} />}
+          invert={'horizontal'} />
         <Transfers transactions={transactions} tokens={tokens} />
         <SidePanel
           opened={newTransferOpened}

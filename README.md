@@ -1,3 +1,7 @@
+# NODE
+
+should run node version 12.0.0
+
 # Aragon Buidler Boilerplate
 
 > 🕵️ [Find more boilerplates using GitHub](https://github.com/search?q=topic:aragon-boilerplate) |
